@@ -9,7 +9,7 @@ A site to compare prices and filter NFT cards from the Immutable-X site. The too
 
 
 ------------------------------------------------
-Developer:
-Twitter - @furious_tc
-GitHUB - @furious-tc
+Developer:\
+Twitter - @furious_tc\
+GitHUB - @furious-tc\
 Telegram - @furious_tc
