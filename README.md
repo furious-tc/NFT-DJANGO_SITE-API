@@ -1,6 +1,8 @@
 # NFT-SITE ON DJANGO, USED API  (IMMUTABLE-X)
 
-A site to compare prices and filter NFT cards from the Immutable-X site. The tools that were used to create. Python | Django | JS | API | CSS | HTML.
+A site to compare prices and filter NFT cards from the Immutable-X site. The tools that were used to create.
+
+# Python | Django | JS | API | CSS | HTML.
 
 #INSTALLATION:
 1) Clone repository.
