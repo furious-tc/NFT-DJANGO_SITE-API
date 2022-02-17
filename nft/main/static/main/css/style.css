@@ -143,7 +143,7 @@ body {
   text-decoration: none;
   display: inline-block;
   color: rgba(255,255,255,.5);
-  
+  text-decoration: none;
   font-weight: 500;
   
 }
@@ -181,10 +181,15 @@ body {
 	letter-spacing: 0.5px;
 }
 
+.decoration-none {
+    text-decoration: none;
+}
+
 
 .nav-li:hover {
   font-size:15.5px;
   text-shadow: 2px 2px 5px whitesmoke;
+  text-decoration: none;
 }
 
 .red-dot {
@@ -278,7 +283,7 @@ img {
 	width: calc(100% - 280px);
 	max-width: 100%;
 	justify-content: space-around;
-	
+	margin-bottom: 100px;
 	background-color: rgb(51, 54, 51);
 
 }
@@ -374,6 +379,7 @@ img {
 /* --КАРТЫ--------------------------------------------------------------- */
 
 body {
+    position:relative;
 	letter-spacing: -.02em;
 	font-family: 'WorkSans', sans-serif;
 	line-height: 1.5;
@@ -518,6 +524,9 @@ body {
 	justify-content: space-between;
 	color:#CCCCCC;
 	flex: 0 0 auto;
+	position:absolute;
+	bottom:0;
+	margin-top: 50px;
 
 }
 
@@ -627,3 +636,8 @@ body {
 	visibility: hidden
 	
 }
+
+a:focus, a:hover {
+		color: #ffffff;
+		text-decoration: none;
+	}

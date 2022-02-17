@@ -29,9 +29,75 @@
 
 </head>
 
-<body>
-{% block content %}
+<body style="font-family: 'Work Sans', sans-serif;">
+{% block header %}
 
+<div class="header">
+
+		<div class="nav">
+			<span>
+				<a class="a-logo" href="/">
+					<div class="nav-logo">
+						<span class="nav-logo-name" id="demotext">FURIOUS</span>
+					</div>
+				</a>
+			</span>
+
+			<a href="">
+				<div align="right" class="header-burger">
+					<span>
+						<svg class="header-burger-in" xmlns="http://www.w3.org/2000/svg" width="40" height="40"
+							fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+							<path fill-rule="evenodd"
+								d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+						</svg>
+
+
+					</span>
+				</div>
+			</a>
+
+			<div class="nav-bar">
+
+				<ul class="nav-ul">
+					{% for i in menu %}
+					{% if i.url_active == page %}
+						<div>
+							<li class="nav-li"><a class="a-nav decoration-none  a-nav-pressed" href="/{{ i.url_active }}">{{ i.title }}</a></li>
+						</div>
+					{% else %}
+						<div>
+							<li class="nav-li"><a class="a-nav decoration-none" href="/{{ i.url_active }}">{{ i.title }}</a></li>
+						</div>
+					{% endif %}
+					{% endfor %}
+<!--					<li class="nav-li" style="display: inline-flex;">-->
+<!--						<div class="red-dot red-dot-dis"></div>Connect Wallet-->
+<!--					</li>-->
+				</ul>
+
+			</div>
+
+		</div>
+
+	</div>
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+{% block footer %}
+	<footer>
+		<div class="footer-wrapper">
+
+			<div class="footer-left">
+				<h1>FURIOUS inc.</h1>
+			</div>
+			<div class="footer-right">
+
+			</div>
+		</div>
+	</footer>
 {% endblock %}
 </body>
 

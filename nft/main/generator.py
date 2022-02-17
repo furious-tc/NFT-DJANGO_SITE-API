@@ -1,5 +1,6 @@
 import json
 import re
+import requests
 
 
 def filters(req):
@@ -15,11 +16,6 @@ def filters(req):
         cursor = (req.getlist('cursor')[0]).split(sep=',', maxsplit=-1)
     except:
         pass
-    print(attributes)
-    print(spectaculars)
-    print(token_frames)
-    print(cursor)
-
 
     attribute = []
     spectacular = []
@@ -27,7 +23,6 @@ def filters(req):
 
     if '' in attributes:
         attribute = 'Accountability%22%2C%22Ambition%22%2C%22Conviction%22%2C%22Curiosity%22%2C%22Empathy%22%2C%22Gratitude%22%2C%22Humility%22%2C%22Kind%20Candor%22%2C%22Kindness%22%2C%22Optimism%22%2C%22Patience%22%2C%22Self-awareness%22%2C%22Tenacity%22%2C%22Special'
-        print(attribute)
     else:
         for i in attributes:
             if i.capitalize() in static_attributes:
@@ -57,3 +52,39 @@ def filters(req):
         url = f"https://api.x.immutable.com/v1/orders?include_fees=true&status=active&sell_token_address=0xac98d8d1bb27a94e79fbf49198210240688bb1ed&sell_metadata=%7B%22Attribute%22%3A%5B%22{attribute}%22%5D%2C%22Spectacular%22%3A%5B%22{spectacular}%22%5D%2C%22Token%20Frame%22%3A%5B%22{token_frame}%22%5D%7D&buy_token_type=ETH&order_by=buy_quantity&direction=asc&page_size=30&cursor={cursor[0]}"
 
     return url
+
+
+def response(request):
+    url = 'https://api.x.immutable.com/v1/orders?include_fees=true&status=active&sell_token_address=0xac98d8d1bb27a94e79fbf49198210240688bb1ed&sell_metadata={"Attribute":["Accountability","Ambition","Conviction","Curiosity","Empathy","Gratitude","Humility","Kind Candor","Kindness","Optimism","Patience","Self-awareness","Tenacity","Special"],"Spectacular":["Bubble Gum","Diamond","Gold","Hologram","Lava"],"Token Frame":["Black","Caviar","Champagne","Clear","Emerald","Fur","Galaxy","Gold","Granite","Marble","Neon","Pearl","Rainbow","Silver","Wood"]}&buy_token_type=ETH&page_size=30&cursor='
+    if request.GET != {}:
+        try:
+            url = filters(request.GET)
+        except AttributeError:
+            pass
+        except IndexError:
+            pass
+
+    data = requests.get(url.replace('\n', '')).json()
+
+    #НАПОМИНАНИЕ: "ПЕРЕДЕЛАТЬ В ДЕКОРАТОР"
+    for i, c in enumerate(data["result"]):
+        data_price = c['buy']['data']['quantity']
+        if len(data_price) == 18:
+            price = f'0.{round(int(data_price[:5]), 3)}'
+        elif len(data_price) == 19:
+            first_num = data_price[0]
+            price = f'{first_num}.{int(data_price[1:6])}'
+        elif len(data_price) == 20:
+            first_num = data_price[:2]
+            price = f'{first_num}.{int(data_price[2:7])}'
+        elif len(data_price) == 21:
+            first_num = data_price[:3]
+            price = f'{first_num}.{int(data_price[3:8])}'
+        elif len(data_price) == 22:
+            first_num = data_price[:4]
+            price = f'{first_num}.{int(data_price[4:9])}'
+
+        else:
+            continue
+        data["result"][i]["buy"]["data"]["price"] = price
+    return data
