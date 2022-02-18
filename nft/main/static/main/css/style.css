@@ -641,3 +641,34 @@ a:focus, a:hover {
 		color: #ffffff;
 		text-decoration: none;
 	}
+
+/* HOME PAGE */
+
+.wrapper-home {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    width: 100%;
+    height: 80%;
+
+}
+
+.about {
+    font-size: 25px;
+    width: 50%;
+    height: 100%;
+}
+
+.about-png {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 50%;
+    height: 50%;
+}
+
+.img-src-about {
+
+    margin-top: 20%;
+    border-radius: 30%;
+}

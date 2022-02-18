@@ -1,6 +1,38 @@
 {% extends 'main/base.html' %}
-
+{% load static %}
 
 {% block content %}
-<div style="position: absolute; margin: 0 auto; fount-seze: 70px;" ><h1 style="color: red;">home</h1></div>
+<div class="wrapper-home">
+    <div class="about" style="font-family: 'Work Sans', sans-serif;">
+        <h1 align="center">
+            DESCRIPTION
+
+        </h1>
+        <ul style="margin-bottom: 80px;">
+            <li>This site is designed to find the best deals quickly and easily. </li>
+            <li>Soon the function of saving cards to favorites will be added. </li>
+            <li>Work on setting up Web3 to connect your wallets directly on our site is in progress. </li>
+            <li>You can also install my bot at this link - https://github.com/furious-tc/NFT-SCRAPER.git
+, this bot will help you to get the best deals in telegram messages. </li>
+            <li>After adding authorization is planned to add the function of buying directly through our site.</li>
+            <li>If you want to participate in the development of the project, you can send your pull requests, I will consider them and possibly add to the main branch.</li>
+            <li style="margin-top: 20px;">
+                <p><h1>Contacts:</h1></p>
+                <p><h3>GITHUB - @furious-tc</h3></p>
+                <p><h3>TWITTER - @furious-tc</h3></p>
+                <p><h3>Telegram - @furious_tc</h3></p>
+            </li>
+        </ul>
+
+
+
+    </div>
+    <div class="about-png">
+        <img class="img-src-about" src="{% static 'main/img/about.jpeg' %}">
+    </div>
+
+</div>
+
+
+
 {% endblock %}

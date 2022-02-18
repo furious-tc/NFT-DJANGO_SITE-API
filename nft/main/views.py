@@ -8,19 +8,19 @@ from django.template.loader import get_template
 from .models import *
 from .generator import filters, response
 
-data = Cards.objects.all()
+
 
 menu = [
     {"title": "Home", "url_active": ""},
     {"title": "Shop", "url_active": "shop"},
-    {"title": "About", "url_active": "about"},
+    # {"title": "About", "url_active": "about"},
     {"title": "Account", "url_active": "account"},
 ]
 
 
 def index(request):
     context = {
-        "data": data,
+
         "menu": menu,
         "page": "",
         "title": "Furious Django Project",
@@ -42,7 +42,7 @@ def shop(request):
 
 def about(request):
     context = {
-        "data": data,
+
         "menu": menu,
         "page": "about",
         "title": "About US",
@@ -52,12 +52,13 @@ def about(request):
 
 def account(request):
     context = {
-        "data": data,
+
         "menu": menu,
         "page": "account",
         "title": "AUTH / REGISTRATION",
     }
     return render(request, 'main/account.html', context)
+
 
 def page_not_found(request, exception):
     return HttpResponseNotFound('<h1>Page not found</h1>')

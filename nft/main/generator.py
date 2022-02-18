@@ -1,7 +1,5 @@
-import json
-import re
 import requests
-
+import web3
 
 def filters(req):
     static_attributes = ['Empathy', 'Accountability', 'Ambition', 'Conviction', 'Curiosity', 'Empathy', 'Gratitude', 'Humility', 'Kind Candor', 'Kindness', 'Optimist', 'Patience', 'Self-awareness', 'Tenacity', 'Special']
@@ -65,26 +63,8 @@ def response(request):
             pass
 
     data = requests.get(url.replace('\n', '')).json()
-
-    #НАПОМИНАНИЕ: "ПЕРЕДЕЛАТЬ В ДЕКОРАТОР"
     for i, c in enumerate(data["result"]):
         data_price = c['buy']['data']['quantity']
-        if len(data_price) == 18:
-            price = f'0.{round(int(data_price[:5]), 3)}'
-        elif len(data_price) == 19:
-            first_num = data_price[0]
-            price = f'{first_num}.{int(data_price[1:6])}'
-        elif len(data_price) == 20:
-            first_num = data_price[:2]
-            price = f'{first_num}.{int(data_price[2:7])}'
-        elif len(data_price) == 21:
-            first_num = data_price[:3]
-            price = f'{first_num}.{int(data_price[3:8])}'
-        elif len(data_price) == 22:
-            first_num = data_price[:4]
-            price = f'{first_num}.{int(data_price[4:9])}'
-
-        else:
-            continue
+        price = round(web3.Web3.fromWei(int(data_price), 'ether'), 4)
         data["result"][i]["buy"]["data"]["price"] = price
     return data

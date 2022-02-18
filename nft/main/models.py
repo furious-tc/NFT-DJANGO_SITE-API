@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Cards(models.Model):
+class Auth(models.Model):
     title = models.CharField(max_length=70)
     photo = models.ImageField(upload_to="arts/")
     series = models.CharField(max_length=30)
